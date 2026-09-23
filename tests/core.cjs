@@ -1,0 +1,18 @@
+const assert = require('node:assert/strict');
+const M = require('../engine.js');
+const g = M.validate(M.example());
+assert.equal(g.flowers.length, 6);
+assert.equal(Object.keys(M.SPECIES).length, 4);
+assert.deepEqual(M.SPECIES.clover.rhythm, [0,3,6]);
+assert.equal(M.midi({species:'bell',y:7}),48);
+assert.equal(M.midi({species:'bell',y:0}),64);
+assert.equal(M.midi({species:'moss',y:7}),36);
+let f={id:1,species:'clover',x:2,y:3};
+assert.equal(M.eventsAt({flowers:[f],links:[]},2).length,1);
+assert.equal(M.eventsAt({flowers:[f],links:[]},3).length,0);
+const cycle={flowers:[f,{id:2,species:'bell',x:8,y:1}],links:[{from:1,to:2},{from:2,to:1}]};
+const ev=M.eventsAt(cycle,2);assert.equal(ev.length,2);assert.equal(ev[1].reply,true);assert.equal(ev[1].delay,1);
+assert.throws(()=>M.validate({...g,tempo:NaN}));
+assert.throws(()=>M.validate({...g,flowers:[g.flowers[0],g.flowers[0]]}));
+assert.throws(()=>M.validate({...g,links:[{from:1,to:999}]}));
+console.log('Core checks passed: default, four voices, pitch, timing, bounded cyclic vines, validation.');

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light"><title>Clockwork Garden</title>
+<style>
+/* STYLE */
+</style>
+</head>
+<body>
+<main>
+<header><div><p class="eyebrow">A little instrument of living things</p><h1>Clockwork Garden<span aria-hidden="true">✳</span></h1><p class="intro">Plant a flower. Wind a melody. Let small things sing.</p></div><div class="edition">BOTANICAL STUDIES<br>№ 01 · THE MUSICAL GARDEN</div></header>
+<section class="transport" aria-label="Playback controls"><button id="play" class="primary">Wake the garden</button><label>Tempo <input id="tempo" type="range" min="60" max="120" value="84"><output id="bpm">84 BPM</output></label><label>Volume <input id="volume" type="range" min="0" max="100" value="65"></label><span id="playing-state">Resting, ready to bloom</span></section>
+<div class="workbench"><section class="garden-panel" aria-label="Musical garden"><div class="bed-heading"><span>THE MELODY BED</span><span id="count">6 / 16 flowers</span></div><div class="pitch-caption">Higher notes ↑ <span>Time flows to the right →</span></div><p class="phone-tip">Swipe across the bed for later notes. Tap a flower, then use the move buttons below.</p><div id="bed-wrap" tabindex="0" aria-label="Scrollable garden bed"><svg id="bed" viewBox="0 0 960 480" role="group" aria-label="Musical garden. Choose a seed, then click an empty cell to plant."></svg></div><div class="beats" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>1</span><span>2</span><span>3</span><span>4</span></div><p id="hint">Press Wake the garden to listen. Choose a seed, then plant in an empty space.</p></section>
+<aside><h2>The seed collection</h2><p class="small">Four voices, one little world.</p><div id="seeds" class="seeds"></div><button id="plant" class="plant-button">Plant selected seed</button><section class="inspector"><h2 id="selection">Your garden awaits</h2><p id="details">Select a flower to move it or grow a vine.</p><div class="actions"><button id="connect" disabled>Grow a vine</button><button id="remove" disabled>Remove</button><button id="unlink" disabled>Cut vine</button></div><div class="move-controls" aria-label="Move selected flower"><button id="higher" disabled>↑ Higher</button><button id="lower" disabled>↓ Lower</button><button id="earlier" disabled>← Earlier</button><button id="later" disabled>Later →</button></div><p class="small">Drag with a mouse, or use the move buttons. Arrow keys move a focused flower. A vine adds one quiet reply one eighth note later. Replies never trigger more replies.</p></section></aside></div>
+<section class="keepsake" aria-labelledby="keepsake-title"><h2 id="keepsake-title">Keep a little garden</h2><p class="small">Save in this browser, or take a garden file with you. Nothing is sent anywhere.</p><div class="file-actions"><button id="save">Save here</button><button id="load">Load saved</button><button id="export">Export garden</button><button id="import">Import garden</button><input id="file" type="file" accept=".json,application/json" hidden><button id="share">Share code</button></div><p id="save-state" class="small">No save made this visit. Export a file for a portable backup.</p><div id="share-panel" hidden><label for="share-code">Composition code</label><textarea id="share-code" rows="3" maxlength="12000" spellcheck="false" placeholder="#garden=…"></textarea><div class="file-actions"><button id="copy-code">Copy code</button><button id="open-code">Open code</button><button id="close-code">Close</button></div><p class="small">Send this code with the HTML file. The recipient opens the file, chooses Share code, pastes it and presses Open code. This is not a public website link.</p></div></section>
+<footer><span>Made of brass, leaves & a little time.</span><div><button id="clear">Clear bed</button><button id="reset">Example garden</button></div></footer>
+<p id="status" role="status" aria-live="polite">Sound stays off until you press play.</p>
+</main>
+<script>
+/* ENGINE */
+</script>
+<script>
+/* APP */
+</script>
+</body>
+</html>

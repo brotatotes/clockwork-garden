@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light"><title>Clockwork Garden</title>
+<style>
+.keepsake{border-top:1px solid var(--line);margin-top:22px;padding-top:22px}.file-actions{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.file-actions button{font-size:16px}.keepsake .small{margin-top:12px}#share-panel{background:#ece4d1;border:1px solid var(--line);border-radius:9px;padding:18px;margin-top:16px}#share-code{display:block;width:100%;margin-top:8px;padding:12px;font-size:16px;line-height:1.5;background:#fffbf1;color:var(--ink);border:1px solid #ad9b78;border-radius:6px;resize:vertical;overflow-wrap:anywhere}.actions{flex-wrap:wrap}:root{--ink:#263d32;--paper:#f4eedf;--brass:#99692e;--muted:#586252;--line:#d4c6aa}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:18px Georgia,'Times New Roman',serif;background-image:radial-gradient(ellipse at 15% 0%,#fffaf0 0,transparent 60%)}button,input,select,textarea{font:inherit}button{border:1px solid #ad9b78;background:#fff9ec;color:var(--ink);padding:11px 16px;border-radius:7px;min-height:44px;cursor:pointer}button:hover{background:#e7ddc7}button:disabled{opacity:.48;cursor:default}button:focus-visible,input:focus-visible,[tabindex]:focus-visible{outline:3px solid #b5712c;outline-offset:4px}.primary{background:var(--ink);color:#fff4d5;border-color:var(--ink);min-width:198px}.primary:hover{background:#365940}main{max-width:1400px;padding:32px 44px;margin:auto}header{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}.eyebrow{font-size:14px;letter-spacing:.17em;text-transform:uppercase;color:var(--brass);margin:0 0 8px}h1{font-size:clamp(34px,4vw,58px);font-weight:normal;letter-spacing:-.04em;margin:0}h1 span{font-size:.6em;display:inline-block;margin-left:18px;color:var(--brass)}.intro{margin:10px 0 0;color:var(--muted)}.edition{font-size:13px;line-height:1.8;letter-spacing:.12em;text-align:right;color:var(--brass)}.transport{display:flex;gap:26px;align-items:center;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:16px 0;margin-bottom:26px;flex-wrap:wrap}.transport label{display:flex;gap:10px;align-items:center;font-size:16px}input[type=range]{accent-color:#7b5a2d;width:110px}#playing-state{margin-left:auto;font-size:15px;color:var(--muted)}.workbench{display:grid;grid-template-columns:minmax(0,1fr) 265px;gap:30px}.garden-panel{min-width:0}.bed-heading{display:flex;justify-content:space-between;color:var(--brass);font-size:13px;letter-spacing:.12em;margin:0 0 14px}.pitch-caption{display:flex;justify-content:space-between;font-size:14px;color:var(--muted);margin-bottom:8px}#bed-wrap{border:7px solid #c6ac76;border-radius:15px;background:#172f29;box-shadow:0 0 0 1px #8e713b,0 12px 30px #263d321a;overflow:hidden}#bed{width:100%;height:auto;display:block;touch-action:none;background:radial-gradient(ellipse at 50% 35%,#294e3d,#172e27)}.gridline{stroke:#b8c293;stroke-opacity:.12;stroke-width:1}.flower{cursor:grab}.flower:focus{outline:none}.flower:focus .halo{stroke:#fff1bd;stroke-width:3;stroke-dasharray:4 3}.halo{fill:none;stroke:transparent;stroke-width:2}.flower.selected .halo{stroke:#fff0c0}.flower .bloom{transform-box:fill-box;transform-origin:center}.flower.sounding .bloom{animation:bloom .5s ease-out}.vine{stroke:#d8bc78;stroke-width:2;fill:none;opacity:.68;stroke-dasharray:6 5}.scan{fill:#e9d6a1;opacity:.09;pointer-events:none}.beats{display:flex;justify-content:space-around;font-size:14px;color:var(--brass);padding-top:10px}#hint{font-size:16px;line-height:1.55;color:var(--muted);margin:18px 0}h2{font-size:23px;font-weight:normal;margin:0 0 8px}.small{font-size:15px;color:var(--muted);line-height:1.5;margin:0 0 15px}.seeds{display:grid;gap:8px}.seed{text-align:left;display:grid;grid-template-columns:40px 1fr;align-items:center;padding:8px 10px}.seed[aria-pressed=true]{border:2px solid #876b37;background:#e9dfc8;padding:7px 9px}.seed svg{width:36px;height:36px}.seed strong{display:block;font-weight:normal;font-size:18px}.seed small{font-size:13px;color:#575d50}.inspector{border-top:1px solid var(--line);margin-top:22px;padding-top:20px}#details{font-size:16px;line-height:1.5;min-height:48px}.actions{display:flex;gap:7px;margin-bottom:14px}.actions button{font-size:15px;padding:10px}footer{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:20px;margin-top:22px;gap:16px;font-size:15px;color:var(--muted)}footer div{display:flex;gap:8px}footer button{font-size:15px}#status{font-size:15px;color:var(--muted);min-height:23px}@keyframes bloom{0%{filter:brightness(1.9);transform:scale(1.2)}100%{filter:brightness(1);transform:scale(1)}}@media(max-width:900px){main{padding:22px}.workbench{grid-template-columns:1fr}.seeds{grid-template-columns:repeat(4,1fr)}.seed{grid-template-columns:1fr;text-align:center}.seed svg{margin:auto}.seed small{display:none}.inspector{margin-top:16px}.edition{display:none}#playing-state{margin-left:0}.transport{gap:14px}.transport label{flex-wrap:wrap}}@media(max-width:520px){main{padding:19px 14px}h1{font-size:36px}.eyebrow{font-size:11px}.intro{font-size:16px}.transport{gap:12px}.transport .primary{width:100%}.transport label{font-size:15px;gap:6px}.transport input{width:82px}#playing-state{width:100%}.bed-heading{font-size:11px}.pitch-caption{font-size:12px}#bed-wrap{border-width:4px}#bed{height:330px}.seed strong{font-size:15px}.seed{padding:8px 4px}.seed[aria-pressed=true]{padding:7px 3px}footer{align-items:flex-start;flex-direction:column}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.flower.sounding .bloom{filter:brightness(1.5)}}
+/* Readable controls and a full-sized, touch-scrollable melody bed. */
+.phone-tip{display:none}.plant-button{margin-top:12px;width:100%}.move-controls{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 14px}.move-controls button{font-size:16px}.seed small{font-size:14px}.eyebrow,.bed-heading{font-size:14px}.pitch-caption{font-size:15px}input[type=range]{min-height:44px}.flower{pointer-events:all}.flower .halo{fill:transparent}#bed-wrap:focus-visible{outline:3px solid #b5712c;outline-offset:4px}
+@media(max-width:900px){.phone-tip{display:block;font-size:15px;line-height:1.5;color:var(--muted);margin:0 0 10px}#bed-wrap{overflow-x:auto;overscroll-behavior-x:contain;touch-action:pan-x pan-y}#bed{width:768px;min-width:768px;height:384px;touch-action:pan-x pan-y}.beats{display:none}.plant-button{max-width:300px}.move-controls{max-width:400px}.seed small{display:block;font-size:14px}.seeds{grid-template-columns:repeat(2,1fr)}.seed{grid-template-columns:40px 1fr;text-align:left}.seed strong{font-size:17px}.pitch-caption{font-size:15px}.bed-heading{font-size:13px}.eyebrow{font-size:12px}#hint{margin-top:12px}.transport label{font-size:16px}}
+
+</style>
+</head>
+<body>
+<main>
+<header><div><p class="eyebrow">A little instrument of living things</p><h1>Clockwork Garden<span aria-hidden="true">✳</span></h1><p class="intro">Plant a flower. Wind a melody. Let small things sing.</p></div><div class="edition">BOTANICAL STUDIES<br>№ 01 · THE MUSICAL GARDEN</div></header>
+<section class="transport" aria-label="Playback controls"><button id="play" class="primary">Wake the garden</button><label>Tempo <input id="tempo" type="range" min="60" max="120" value="84"><output id="bpm">84 BPM</output></label><label>Volume <input id="volume" type="range" min="0" max="100" value="65"></label><span id="playing-state">Resting, ready to bloom</span></section>
+<div class="workbench"><section class="garden-panel" aria-label="Musical garden"><div class="bed-heading"><span>THE MELODY BED</span><span id="count">6 / 16 flowers</span></div><div class="pitch-caption">Higher notes ↑ <span>Time flows to the right →</span></div><p class="phone-tip">Swipe across the bed for later notes. Tap a flower, then use the move buttons below.</p><div id="bed-wrap" tabindex="0" aria-label="Scrollable garden bed"><svg id="bed" viewBox="0 0 960 480" role="group" aria-label="Musical garden. Choose a seed, then click an empty cell to plant."></svg></div><div class="beats" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>1</span><span>2</span><span>3</span><span>4</span></div><p id="hint">Press Wake the garden to listen. Choose a seed, then plant in an empty space.</p></section>
+<aside><h2>The seed collection</h2><p class="small">Four voices, one little world.</p><div id="seeds" class="seeds"></div><button id="plant" class="plant-button">Plant selected seed</button><section class="inspector"><h2 id="selection">Your garden awaits</h2><p id="details">Select a flower to move it or grow a vine.</p><div class="actions"><button id="connect" disabled>Grow a vine</button><button id="remove" disabled>Remove</button><button id="unlink" disabled>Cut vine</button></div><div class="move-controls" aria-label="Move selected flower"><button id="higher" disabled>↑ Higher</button><button id="lower" disabled>↓ Lower</button><button id="earlier" disabled>← Earlier</button><button id="later" disabled>Later →</button></div><p class="small">Drag with a mouse, or use the move buttons. Arrow keys move a focused flower. A vine adds one quiet reply one eighth note later. Replies never trigger more replies.</p></section></aside></div>
+<section class="keepsake" aria-labelledby="keepsake-title"><h2 id="keepsake-title">Keep a little garden</h2><p class="small">Save in this browser, or take a garden file with you. Nothing is sent anywhere.</p><div class="file-actions"><button id="save">Save here</button><button id="load">Load saved</button><button id="export">Export garden</button><button id="import">Import garden</button><input id="file" type="file" accept=".json,application/json" hidden><button id="share">Share code</button></div><p id="save-state" class="small">No save made this visit. Export a file for a portable backup.</p><div id="share-panel" hidden><label for="share-code">Composition code</label><textarea id="share-code" rows="3" maxlength="12000" spellcheck="false" placeholder="#garden=…"></textarea><div class="file-actions"><button id="copy-code">Copy code</button><button id="open-code">Open code</button><button id="close-code">Close</button></div><p class="small">Send this code with the HTML file. The recipient opens the file, chooses Share code, pastes it and presses Open code. This is not a public website link.</p></div></section>
+<footer><span>Made of brass, leaves & a little time.</span><div><button id="clear">Clear bed</button><button id="reset">Example garden</button></div></footer>
+<p id="status" role="status" aria-live="polite">Sound stays off until you press play.</p>
+</main>
+<script>
+/* Clockwork Garden. Original synthesis and sequencing, no external dependencies. */
+(function (root) {
+  'use strict';
+  const NOTES = [48, 50, 52, 55, 57, 60, 62, 64];
+  const SPECIES = {
+    bell: {name: 'Bellflower', color: '#edc77c', rhythm: [0, 8], description: 'Two warm, chiming bells'},
+    clover: {name: 'Copper Clover', color: '#e8a18a', rhythm: [0, 3, 6], description: 'Three dancing plucks'},
+    reed: {name: 'Glass Reed', color: '#a5cfcb', rhythm: [0, 8], description: 'Two long, airy tones'},
+    moss: {name: 'Velvet Moss', color: '#b9cd88', rhythm: [0, 4, 8, 12], description: 'Four soft bass pulses'}
+  };
+  const example = () => ({version: 1, tempo: 84, flowers: [
+    {id: 1, species: 'moss', x: 0, y: 7}, {id: 2, species: 'bell', x: 2, y: 2},
+    {id: 3, species: 'clover', x: 4, y: 4}, {id: 4, species: 'reed', x: 6, y: 5},
+    {id: 5, species: 'bell', x: 10, y: 0}, {id: 6, species: 'clover', x: 12, y: 3}
+  ], links: [{from: 2, to: 5}]});
+  const midi = f => NOTES[7 - f.y] - (f.species === 'moss' ? 12 : 0);
+  const noteName = f => ['C','C♯','D','E♭','E','F','F♯','G','A♭','A','B♭','B'][midi(f) % 12] + (Math.floor(midi(f) / 12) - 1);
+  function eventsAt(garden, step) {
+    const events = [];
+    for (const flower of garden.flowers) {
+      if (SPECIES[flower.species].rhythm.some(offset => (flower.x + offset) % 16 === step)) {
+        events.push({flower, delay: 0, gain: 1, reply: false});
+        const link = garden.links.find(l => l.from === flower.id);
+        const target = link && garden.flowers.find(f => f.id === link.to);
+        if (target) events.push({flower: target, delay: 1, gain: .38, reply: true});
+      }
+    }
+    return events;
+  }
+  function validate(value) {
+    if (!value || value.version !== 1 || !Number.isFinite(value.tempo) || value.tempo < 60 || value.tempo > 120 || !Array.isArray(value.flowers) || value.flowers.length > 16 || !Array.isArray(value.links) || value.links.length > 16) throw Error('This is not a supported garden.');
+    const ids = new Set(), cells = new Set();
+    const flowers = value.flowers.map(f => {
+      if (!f || !Number.isSafeInteger(f.id) || f.id < 1 || f.id > 1000000 || typeof f.species !== 'string' || !Object.hasOwn(SPECIES, f.species) || !Number.isInteger(f.x) || f.x < 0 || f.x > 15 || !Number.isInteger(f.y) || f.y < 0 || f.y > 7 || ids.has(f.id) || cells.has(f.x + ',' + f.y)) throw Error('A flower has an invalid or repeated position.');
+      ids.add(f.id); cells.add(f.x + ',' + f.y);
+      return {id: f.id, species: f.species, x: f.x, y: f.y};
+    });
+    const sources = new Set();
+    const links = value.links.map(l => {
+      if (!l || !ids.has(l.from) || !ids.has(l.to) || l.from === l.to || sources.has(l.from)) throw Error('A vine must connect two flowers, with one reply per source.');
+      sources.add(l.from); return {from: l.from, to: l.to};
+    });
+    return {version: 1, tempo: value.tempo, flowers, links};
+  }
+  const MAX_TEXT = 12000;
+  function parse(text) {
+    if (typeof text !== 'string' || text.length > MAX_TEXT) throw Error('Garden data is too large. The limit is 12 KB.');
+    try { return validate(JSON.parse(text)); }
+    catch (error) { throw Error('Could not open this garden. ' + (error instanceof SyntaxError ? 'The JSON is incomplete or malformed.' : error.message)); }
+  }
+  const serialize = value => JSON.stringify(validate(value));
+  function fragment(value) { return '#garden=' + btoa(serialize(value)); }
+  function fromFragment(text) {
+    if (typeof text !== 'string' || text.length > MAX_TEXT || !/^#garden=[A-Za-z0-9+/]*={0,2}$/.test(text)) throw Error('This garden code is invalid or too large.');
+    try { return parse(atob(text.slice(8))); }
+    catch (error) { throw Error('Could not open this garden code. ' + error.message); }
+  }
+  function voice(ctx, out, flower, time, strength = 1) {
+    const freq = 440 * Math.pow(2, (midi(flower) - 69) / 12);
+    const type = flower.species;
+    const duration = type === 'reed' ? 1.4 : type === 'bell' ? 1.1 : type === 'clover' ? .38 : .55;
+    const amp = type === 'reed' ? .027 : type === 'moss' ? .052 : .04;
+    const envelope = ctx.createGain();
+    envelope.gain.setValueAtTime(0, time);
+    envelope.gain.linearRampToValueAtTime(amp * strength, time + (type === 'reed' ? .09 : .012));
+    envelope.gain.exponentialRampToValueAtTime(.00001, time + duration);
+    envelope.gain.setValueAtTime(0, time + duration + .02);
+    envelope.connect(out);
+    const components = type === 'bell' ? [[1, 1], [2, .24], [3, .07]] : type === 'reed' ? [[1, 1], [2, .22]] : [[1, 1]];
+    let remaining = components.length;
+    components.forEach(([ratio, level]) => {
+      const osc = ctx.createOscillator(), gain = ctx.createGain();
+      osc.type = type === 'clover' ? 'triangle' : 'sine';
+      osc.frequency.setValueAtTime(freq * ratio, time);
+      gain.gain.value = level;
+      osc.connect(gain); gain.connect(envelope); osc.start(time); osc.stop(time + duration + .03);
+      osc.onended = () => { osc.disconnect(); gain.disconnect(); if (--remaining === 0) envelope.disconnect(); };
+    });
+    return duration;
+  }
+  class Engine {
+    constructor(getGarden, onPulse, onState) {
+      this.getGarden = getGarden; this.onPulse = onPulse; this.onState = onState;
+      this.running = false; this.volume = .65; this.queue = []; this.played = 0;
+    }
+    async play() {
+      if (this.running || this.starting) return;
+      const request=(this.request||0)+1;this.request=request;this.starting=true;
+      try {
+      if (!this.ctx) {
+        const Audio = root.AudioContext || root.webkitAudioContext;
+        if (!Audio) throw Error('Web Audio is unavailable in this browser. Try a current browser.');
+        this.ctx = new Audio();
+        this.master = this.ctx.createGain();
+        this.analyser = this.ctx.createAnalyser(); this.analyser.fftSize = 2048;
+        this.master.connect(this.analyser); this.analyser.connect(this.ctx.destination);
+        this.ctx.onstatechange = () => { if (this.ctx.state !== 'running' && this.running) this.pause(); };
+      }
+      await this.ctx.resume();
+      if(this.request!==request)return;
+      if (this.ctx.state !== 'running') throw Error('Audio could not start. Press play again.');
+      this.bus = this.ctx.createGain(); this.bus.connect(this.master);
+      this.master.gain.setValueAtTime(this.volume, this.ctx.currentTime);
+      this.running = true; this.step = 0; this.next = this.ctx.currentTime + .06; this.queue = [];
+      this.timer = setInterval(() => this.tick(), 25); this.tick(); this.onState(true);
+      } finally {this.starting=false;}
+    }
+    setVolume(v) { this.volume = v; if (this.ctx) this.master.gain.setTargetAtTime(v, this.ctx.currentTime, .03); }
+    tick() {
+      if (!this.running) return;
+      const now = this.ctx.currentTime;
+      // A delayed timer drops the backlog, never schedules a catch-up burst.
+      if (this.next < now - .1) this.next = now + .04;
+      let guard = 0;
+      while (this.next < now + .1 && guard++ < 2) {
+        const g = this.getGarden(), eighth = 30 / g.tempo;
+        for (const e of eventsAt(g, this.step)) {
+          const time = this.next + e.delay * eighth;
+          voice(this.ctx, this.bus, e.flower, time, e.gain);
+          this.queue.push({time, id: e.flower.id, reply: e.reply}); this.played++;
+        }
+        this.queue.push({time: this.next, step: this.step});
+        this.next += eighth; this.step = (this.step + 1) % 16;
+      }
+    }
+    frame() {
+      if (!this.running) return;
+      const now = this.ctx.currentTime;
+      const ready = this.queue.filter(e => e.time <= now);
+      this.queue = this.queue.filter(e => e.time > now);
+      for (const e of ready) this.onPulse(e);
+    }
+    pause() {
+      this.request=(this.request||0)+1;
+      if (!this.running) return;
+      this.running = false; clearInterval(this.timer); this.queue = [];
+      const old = this.bus, now = this.ctx.currentTime;
+      old.gain.cancelScheduledValues(now); old.gain.setTargetAtTime(0, now, .012);
+      setTimeout(() => old.disconnect(), 100);
+      this.onState(false);
+    }
+  }
+  const api = {NOTES, SPECIES, example, midi, noteName, eventsAt, validate, parse, serialize, fragment, fromFragment, MAX_TEXT, voice, Engine};
+  if (typeof module !== 'undefined') module.exports = api;
+  root.GardenMusic = api;
+})(typeof window === 'undefined' ? globalThis : window);
+
+</script>
+<script>
+/* DOM controller for the local musical garden. */
+'use strict';
+const M = GardenMusic, $ = id => document.getElementById(id);
+let garden = M.example(), seed = 'bell', selected = null, linking = false, drag = null;
+const NS = 'http://www.w3.org/2000/svg';
+function svg(tag, attrs = {}) { const e = document.createElementNS(NS, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); return e; }
+function say(text) { $('status').textContent = text; }
+function blossom(species) {
+  const g = svg('g', {class: 'bloom'}), color = M.SPECIES[species].color;
+  const petalCount = species === 'clover' ? 3 : species === 'moss' ? 8 : species === 'reed' ? 4 : 6;
+  for (let i = 0; i < petalCount; i++) {
+    const shape = species === 'reed' ? svg('path', {d:'M0 0 Q-9 -15 0 -27 Q9 -15 0 0'}) : svg('ellipse', {cx:0, cy:-12, rx:species === 'clover' ? 11 : 6, ry:species === 'moss' ? 9 : 13});
+    shape.setAttribute('fill', color); shape.setAttribute('stroke', '#fff2c3'); shape.setAttribute('stroke-width', '.7'); shape.setAttribute('transform', 'rotate(' + i * 360 / petalCount + ')'); g.append(shape);
+  }
+  g.append(svg('circle', {r:8, fill:'#ae813e', stroke:'#f0db9e', 'stroke-width':2}), svg('circle', {r:3, fill:'#2d4b3d'}));
+  return g;
+}
+function cell(f) { return {x:f.x * 60 + 30, y:f.y * 60 + 30}; }
+function render() {
+  const bed = $('bed'); bed.replaceChildren();
+  const defs = svg('defs'), marker = svg('marker', {id:'arrow', viewBox:'0 0 10 10', refX:9, refY:5, markerWidth:5, markerHeight:5, orient:'auto-start-reverse'});
+  marker.append(svg('path', {d:'M0 0 L10 5 L0 10 Z', fill:'#d8bc78'})); defs.append(marker); bed.append(defs);
+  for (let x=1;x<16;x++) bed.append(svg('path',{d:`M${x*60} 0V480`,class:'gridline'}));
+  for (let y=1;y<8;y++) bed.append(svg('path',{d:`M0 ${y*60}H960`,class:'gridline'}));
+  bed.append(svg('rect',{id:'scan',x:0,y:0,width:60,height:480,class:'scan',visibility:engine.running?'visible':'hidden'}));
+  for (const link of garden.links) {
+    const a = cell(garden.flowers.find(f=>f.id===link.from)), b=cell(garden.flowers.find(f=>f.id===link.to));
+    const dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy), bx=b.x-dx/len*29,by=b.y-dy/len*29;
+    bed.append(svg('path',{d:`M${a.x} ${a.y} Q${(a.x+b.x)/2} ${(a.y+b.y)/2-35} ${bx} ${by}`,class:'vine','marker-end':'url(#arrow)'}));
+  }
+  for (const f of garden.flowers) {
+    const p=cell(f),g=svg('g',{transform:`translate(${p.x} ${p.y})`,class:'flower'+(selected===f.id?' selected':''),tabindex:0,role:'button','data-id':f.id,'aria-label':`${M.SPECIES[f.species].name}, ${M.noteName(f)}, eighth note ${f.x+1}. Arrow keys move, Delete removes.`});
+    g.append(svg('circle',{r:29,class:'halo'}),svg('path',{d:'M0 5 Q-3 19 5 29 M1 18 Q-18 5 -12 20 Q-5 26 1 18',fill:'#7f9c68',stroke:'#b2b583','stroke-width':1.5}),blossom(f.species));
+    bed.append(g);
+  }
+  $('count').textContent=garden.flowers.length+' / 16 flowers';
+  const f=garden.flowers.find(f=>f.id===selected);
+  $('selection').textContent=f?M.SPECIES[f.species].name:'Your garden awaits';
+  $('details').textContent=f?`${M.noteName(f)} · Eighth note ${f.x+1} of 16. ${linking?'Choose another flower for a quiet reply.':'Move up for higher notes, right for later notes.'}`:'Select a flower to move it or grow a vine.';
+  $('connect').disabled=$('remove').disabled=!f;
+  for(const id of ['higher','lower','earlier','later']) $(id).disabled=!f;
+  $('plant').disabled=garden.flowers.length>=16;
+  $('unlink').disabled=!f||!garden.links.some(l=>l.from===f.id);
+  $('connect').textContent=linking?'Cancel vine':'Grow a vine';
+  $('tempo').value=garden.tempo; $('bpm').textContent=garden.tempo+' BPM';
+}
+const engine = new M.Engine(()=>garden, e=>{
+  if (e.step!==undefined) { const scan=$('scan'); scan.setAttribute('x',e.step*60); scan.setAttribute('visibility','visible'); }
+  if (e.id) { const f=document.querySelector(`[data-id="${e.id}"]`); if(f) { f.classList.remove('sounding'); void f.getBoundingClientRect(); f.classList.add('sounding'); setTimeout(()=>f.classList.remove('sounding'),500); } }
+}, running=>{
+  $('play').textContent=running?'Pause the garden':'Wake the garden';
+  $('playing-state').textContent=running?'The garden is singing':'Resting, ready to bloom';
+  say(running?'The garden is playing. All changes become part of the next notes.':'Garden paused. Press Wake the garden to restart the phrase.');
+  $('hint').textContent=running?'The light follows the music. Move a flower higher for a higher note, or right for a later start.':'Press Wake the garden to listen. Choose a seed, then plant in an empty space.';
+  if(!running && $('scan')) $('scan').setAttribute('visibility','hidden');
+});
+for (const [key,s] of Object.entries(M.SPECIES)) {
+  const b=document.createElement('button'); b.className='seed'; b.dataset.species=key; b.setAttribute('aria-pressed',String(seed===key));
+  const art=svg('svg',{viewBox:'-30 -30 60 60','aria-hidden':'true'}); art.append(blossom(key));
+  const label=document.createElement('span'), title=document.createElement('strong'),description=document.createElement('small');title.textContent=s.name;description.textContent=s.description;label.append(title,description);b.append(art,label);
+  b.onclick=()=>{seed=key; linking=false;document.querySelectorAll('.seed').forEach(e=>e.setAttribute('aria-pressed',String(e===b)));say(s.name+' seed ready. Click an empty space to plant.');render();};$('seeds').append(b);
+}
+function locationOf(event) {
+  const p=new DOMPoint(event.clientX,event.clientY).matrixTransform($('bed').getScreenCTM().inverse());
+  return {x:Math.max(0,Math.min(15,Math.floor(p.x/60))),y:Math.max(0,Math.min(7,Math.floor(p.y/60)))};
+}
+function select(id) {
+  if(linking&&id!==selected) {garden.links=garden.links.filter(l=>l.from!==selected);garden.links.push({from:selected,to:id});linking=false;say('Vine grown. The second flower will reply one eighth note later.');}
+  else selected=id;
+  render();
+}
+function plant(p) {
+  if(garden.flowers.some(f=>f.x===p.x&&f.y===p.y))return;
+  if(garden.flowers.length>=16){say('The bed is full. Remove a flower before planting.');return;}
+  selected=1;while(garden.flowers.some(f=>f.id===selected))selected++;
+  garden.flowers.push({id:selected,species:seed,...p});linking=false;render();say(M.SPECIES[seed].name+' planted.');
+}
+function pressBed(e, allowDrag) {
+  const target=e.target.closest('[data-id]');
+  if(target){const id=Number(target.dataset.id),wasLinking=linking;select(id);if(allowDrag&&!wasLinking){drag={id,startX:e.clientX,startY:e.clientY,moved:false};$('bed').setPointerCapture(e.pointerId);}}
+  else plant(locationOf(e));
+}
+let touchStart=null;
+$('bed').addEventListener('pointerdown',e=>{
+  if(e.pointerType==='touch'){touchStart={x:e.clientX,y:e.clientY};return;}
+  pressBed(e,true);
+});
+$('bed').addEventListener('pointermove',e=>{
+  if(!drag||Math.hypot(e.clientX-drag.startX,e.clientY-drag.startY)<6)return;
+  const p=locationOf(e),f=garden.flowers.find(f=>f.id===drag.id);if(!garden.flowers.some(other=>other.id!==f.id&&other.x===p.x&&other.y===p.y)){Object.assign(f,p);drag.moved=true;render();}
+});
+$('bed').addEventListener('pointerup',e=>{
+  if(e.pointerType==='touch'&&touchStart&&Math.hypot(e.clientX-touchStart.x,e.clientY-touchStart.y)<8)pressBed(e,false);
+  drag=null;touchStart=null;
+});
+$('bed').addEventListener('pointercancel',()=>{drag=null;touchStart=null;});
+$('plant').onclick=()=>{
+  for(let x=0;x<16;x++)for(let y=4;y<12;y++)if(!garden.flowers.some(f=>f.x===x&&f.y===y%8)){
+    plant({x,y:y%8});document.querySelector(`[data-id="${selected}"]`).focus();return;
+  }
+};
+function moveSelected(dx,dy){
+  const f=garden.flowers.find(f=>f.id===selected);if(!f)return;
+  const x=Math.max(0,Math.min(15,f.x+dx)),y=Math.max(0,Math.min(7,f.y+dy));
+  if(garden.flowers.some(o=>o.id!==f.id&&o.x===x&&o.y===y)){say('Another flower occupies that space.');return;}
+  Object.assign(f,{x,y});render();say(M.noteName(f)+', eighth note '+(f.x+1));
+}
+$('higher').onclick=()=>moveSelected(0,-1);$('lower').onclick=()=>moveSelected(0,1);
+$('earlier').onclick=()=>moveSelected(-1,0);$('later').onclick=()=>moveSelected(1,0);
+function remove(){if(!selected)return;garden.flowers=garden.flowers.filter(f=>f.id!==selected);garden.links=garden.links.filter(l=>l.from!==selected&&l.to!==selected);selected=null;linking=false;render();say('Flower removed.');}
+$('bed').addEventListener('keydown',e=>{
+  const target=e.target.closest('[data-id]');if(!target)return;const id=Number(target.dataset.id),f=garden.flowers.find(f=>f.id===id);
+  if(e.key==='Enter'||e.key===' '){e.preventDefault();select(id);document.querySelector(`[data-id="${id}"]`).focus();return;}
+  if(e.key==='Delete'||e.key==='Backspace'){e.preventDefault();selected=id;remove();$('play').focus();return;}
+  const delta={ArrowLeft:[-1,0],ArrowRight:[1,0],ArrowUp:[0,-1],ArrowDown:[0,1]}[e.key];if(!delta)return;e.preventDefault();const x=Math.max(0,Math.min(15,f.x+delta[0])),y=Math.max(0,Math.min(7,f.y+delta[1]));if(!garden.flowers.some(o=>o.id!==id&&o.x===x&&o.y===y)){f.x=x;f.y=y;selected=id;render();document.querySelector(`[data-id="${id}"]`).focus();say(M.noteName(f)+', eighth note '+(f.x+1));}
+});
+$('play').onclick=async()=>{$('play').disabled=true;try{if(engine.running)engine.pause();else await engine.play();}catch(e){say(e.message);}finally{$('play').disabled=false;}};
+$('volume').oninput=e=>engine.setVolume(Number(e.target.value)/100);
+$('tempo').oninput=e=>{garden.tempo=Number(e.target.value);$('bpm').textContent=garden.tempo+' BPM';};
+$('connect').onclick=()=>{linking=!linking;render();};$('remove').onclick=remove;
+$('clear').onclick=()=>{engine.pause();garden.flowers=[];garden.links=[];selected=null;linking=false;render();say('An empty bed. Choose a seed and plant.');};
+$('reset').onclick=()=>{engine.pause();garden=M.example();selected=null;linking=false;render();say('Example garden restored. Press play to listen.');};
+document.addEventListener('visibilitychange',()=>{if(document.hidden){engine.pause();say('Paused while the tab was away. Press play to resume.');}});
+const STORAGE_KEY = 'clockwork-garden-v1';
+function replaceGarden(value, message) {
+  const checked = M.validate(value);
+  engine.pause(); garden=checked; selected=null; linking=false; drag=null;
+  render(); say(message + ' Press Wake the garden to listen.');
+}
+$('unlink').onclick=()=>{garden.links=garden.links.filter(l=>l.from!==selected);linking=false;render();say('Outgoing vine removed.');};
+$('save').onclick=()=>{
+  try { localStorage.setItem(STORAGE_KEY,M.serialize(garden)); $('save-state').textContent='Garden saved in this browser. Export a file before moving or renaming the HTML.'; say('Saved here.'); }
+  catch(error) { say('This browser could not save locally. Use Export garden for a file instead.'); }
+};
+$('load').onclick=()=>{
+  try { const text=localStorage.getItem(STORAGE_KEY); if(text===null) { say('No garden is saved here yet.'); return; } replaceGarden(M.parse(text),'Saved garden restored.'); }
+  catch(error) { say('Saved garden could not be loaded. Your current garden is unchanged. '+error.message); }
+};
+$('export').onclick=()=>{
+  try {
+    const blob=new Blob([M.serialize(garden)+'\n'],{type:'application/json'}), url=URL.createObjectURL(blob),a=document.createElement('a');
+    a.href=url;a.download='Clockwork-Garden.json';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+    say('Garden file prepared. Keep it with your HTML file.');
+  } catch(error) { say('Export failed. '+error.message); }
+};
+$('import').onclick=()=>$('file').click();
+$('file').onchange=async e=>{
+  const file=e.target.files[0];if(!file)return;
+  try { if(file.size>M.MAX_TEXT)throw Error('Garden files must be under 12 KB.');const value=M.parse(await file.text());replaceGarden(value,'Garden file opened.'); }
+  catch(error){say('Import failed. Your current garden is unchanged. '+error.message);}
+  finally{e.target.value='';}
+};
+$('share').onclick=()=>{$('share-panel').hidden=false;$('share-code').value=M.fragment(garden);$('share-code').focus();$('share-code').select();say('Copy the composition code, or paste one here to open it.');};
+$('copy-code').onclick=async()=>{
+  const area=$('share-code');area.focus();area.select();
+  try{if(!navigator.clipboard)throw Error('Clipboard unavailable');await navigator.clipboard.writeText(area.value);say('Composition code copied.');}
+  catch(error){say('Automatic copy is unavailable. The code is selected. Use your browser’s Copy command.');}
+};
+$('open-code').onclick=()=>{try{replaceGarden(M.fromFragment($('share-code').value.trim()),'Shared garden opened.');}catch(error){say('Code not opened. Your current garden is unchanged. '+error.message);}};
+$('close-code').onclick=()=>{$('share-panel').hidden=true;$('share').focus();};
+function loadFragment(){if(!location.hash)return;try{replaceGarden(M.fromFragment(location.hash),'Shared garden opened.');}catch(error){say('URL garden code was rejected. '+error.message);}}
+window.addEventListener('hashchange',loadFragment);
+function frame(){engine.frame();requestAnimationFrame(frame);}render();loadFragment();requestAnimationFrame(frame);
+
+</script>
+</body>
+</html>
