@@ -6,4 +6,4 @@ System serif font names are CSS fallbacks only. The fonts themselves are provide
 
 No third-party asset attribution or bundled third-party license is required for these product files. Python, Node.js, Playwright, Chromium and Xvfb are development/test tools and are not included in the deliverable.
 
-The build is supplied for private review and modification by its requesting owner. Public distribution and a public-source license have not been selected or authorized. This note does not apply an open-source license or grant public publishing permission.
+The owner has authorized public distribution of this build and its source on GitHub and GitHub Pages. No open-source license has been selected. Public visibility does not itself grant a general license to reuse or redistribute the project.

@@ -1,5 +1,7 @@
 # Clockwork Garden
 
+[Play in your browser](https://brotatotes.github.io/clockwork-garden/)
+
 A small, original browser musical toy. Plant mechanical flowers, move them through a melody bed, and grow vines that answer with quiet notes.
 
 ## Open and play
@@ -20,7 +22,7 @@ There are 16 timing columns and eight pitch rows. Notes come from C major pentat
 
 **Export garden** downloads a small JSON composition file. **Import garden** opens that file without starting sound. Invalid files are rejected without replacing your garden.
 
-**Share code** produces a composition code. Send the code and HTML file to a recipient. They open the HTML, choose Share code, paste the code and press Open code. Copy the selected text manually if automatic clipboard access is unavailable. The same code can be appended as the HTML URL fragment. This local review build does not provide a publicly hosted share link.
+**Share code** produces a composition code. Send the code and HTML file to a recipient. They open the HTML, choose Share code, paste the code and press Open code. Copy the selected text manually if automatic clipboard access is unavailable. For the hosted garden, append the complete code beginning with `#garden=` to `https://brotatotes.github.io/clockwork-garden/` to share a playable link. The composition stays in the URL fragment and is not sent to the hosting server.
 
 **Clear bed** and **Example garden** replace the current composition without saving it. Save or export first if you want to keep your changes. There is no undo.
 
@@ -32,7 +34,7 @@ No accounts, network requests, analytics, cloud services, runtime AI, recordings
 
 The standalone HTML is also readable source. The companion source package contains the separated files and tests.
 
-Run `python3 build.py` to reproduce the standalone file from `index.template.html`, `style.css`, `engine.js` and `app.js`. The build uses only the Python standard library. No package installation is required to play or build.
+Run `python3 build.py` to reproduce both `Clockwork-Garden.html` and the identical GitHub Pages entry point `index.html` from `index.template.html`, `style.css`, `engine.js` and `app.js`. The build uses only the Python standard library. No package installation is required to play or build.
 
 Tests require Node.js and, for browser checks, Python Playwright and Chromium. The browser tests use the local Linux snap Chromium path `/snap/bin/chromium` and its accessible temporary directory. Adapt these test-only paths for another system.
 
@@ -49,4 +51,4 @@ xvfb-run -a node tests/browser_lifecycle.cjs
 
 ## Review limits
 
-This is a local review build, not a public release. Automated testing covers Chromium on Linux with desktop and emulated phone inputs. Actual audio signals are measured, including offline synthesis, but this is not a subjective listening review. Physical phones, Safari, Firefox and screen-reader use have not been tested. Your listening and play feedback remain valuable.
+This first playable is available on GitHub Pages and as a downloadable standalone HTML file. Automated testing covers Chromium on Linux with desktop and emulated phone inputs. Actual audio signals are measured, including offline synthesis, but this is not a subjective listening review. Physical phones, Safari, Firefox and screen-reader use have not been tested. Your listening and play feedback remain valuable.
